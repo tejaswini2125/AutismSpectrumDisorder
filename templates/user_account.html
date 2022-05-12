@@ -1,0 +1,363 @@
+<!--DOCTYPE html>
+<html-- lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='account.css') }}">
+    <title>Title</title>
+</head>
+<>
+<div class="topnav">
+  <a class="active" href>
+  <a class="active" href="/logout">logout</a></a>
+</div>
+<h1><center>Prediction of Autism in all age groups</center></h1>
+    <center>{% with messages = get_flashed_messages() %}
+   {% if messages %}
+     <ul class="flashes">
+        {% for message in messages %}
+         <div class="message_flash">{{ message }}</div>
+        {% endfor %}
+    </ul>
+  {% endif %}
+ {% endwith %}</center>
+
+    <div class="container">
+        <br>
+        <br>
+        <center>
+        <form action = "/predict" method = "post" enctype="multipart/form-data">
+            <label for="psw"><b></b></label>A1_Score  <input type="text" placeholder="" name="A1_Score" ><br>
+            <label for="psw"><b></b></label>A2_Score  <input type="text" placeholder="" name="A2_Score" ><br>
+            <label for="psw"><b></b></label>A3_Score  <input type="text" placeholder="" name="A3_Score" ><br>
+            <label for="psw"><b></b></label>A4_Score  <input type="text" placeholder="" name="A4_Score" ><br>
+            <label for="psw"><b></b></label>A5_Score  <input type="text" placeholder="" name="A5_Score" ><br>
+            <label for="psw"><b></b></label>A6_Score  <input type="text" placeholder="" name="A6_Score" ><br>
+            <label for="psw"><b></b></label>A7_Score  <input type="text" placeholder="" name="A7_Score" ><br>
+            <label for="psw"><b></b></label>A8_Score  <input type="text" placeholder="" name="A8_Score" ><br>
+            <label for="psw"><b></b></label>A9_Score  <input type="text" placeholder="" name="A9_Score" ><br>
+            <label for="psw"><b></b></label>A10_Score <input type="text" placeholder="" name="A10_Score" ><br>
+            <label for="psw"><b></b></label>age       <input type="text" placeholder="" name="age" ><br>
+            <label for="psw"><b></b></label>gender    <input type="text" placeholder="" name="gender" ><br>
+            <label for="psw"><b></b></label>ethnicity <input type="text" placeholder="" name="ethnicity" ><br>
+            <label for="psw"><b></b></label>jaundice  <input type="text" placeholder="" name="jaundice" ><br>
+            <label for="psw"><b></b></label>austim    <input type="text" placeholder="" name="austim" ><br>
+            <label for="psw"><b></b></label>country_of_res  <input type="text" placeholder="" name="country_of_res" ><br>
+            <label for="psw"><b></b></label>used_app_before    <input type="text" placeholder="" name="used_app_before" ><br>
+            <label for="psw"><b></b></label>result    <input type="text" placeholder="" name="result" ><br>
+            <label for="psw"><b></b></label>age_desc  <input type="text" placeholder="" name="age_desc" ><br>
+            <label for="psw"><b></b></label>relation  <input type="text" placeholder="" name="relation" ><br>
+            <br>
+            <br>
+            <button type="submit">Predict</button>
+        </form></center>
+
+    </div>
+<div class="callout">
+  <div class="callout-header"></div>
+  <span class="closebtn" onclick="this.parentElement.style.display='none';">×</span>
+  <div class="callout-container">
+    <p><a href="/chatbot">chatbot</a> </p>
+  </div>
+</div>
+
+</body>
+</html-->
+
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Home</title>
+</head>
+
+<nav class="navbar navbar-dark bg-dark navbar-fixed-top">
+    <a class="navbar-brand" href="#">Autism Disease Diagnosis</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/chatbot">chatbot</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/about">About</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<body>
+<!--h1 class="hero-title">autism Disease Diagnosis</h1-->
+
+    <div class="container-fluid">
+        <div class="col-lg-12">
+                <form action="{{ url_for('predict') }}" method="post">
+                    <br>
+                    <br>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4">
+                                <label for="age">Enter your age</label>
+                            </div>
+                            <div class="col-lg-8 col-md-8">
+                                <input type="text" class="form-control" id="age" name="age" placeholder="Your current age in years">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4">
+                                <label for="sex">Enter your Gender</label>
+                            </div>
+                            <div class="col-lg-8 col-md-8">
+                                <select class="form-control" id="sex" name="sex">
+                                    <option value="1">Male</option>
+                                    <option value="0">Female</option>
+                                </select>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4">
+                                <label for="A1_Score">A1_Score</label>
+                            </div>
+                            <div class="col-lg-8 col-md-8">
+                                <input type="text" class="form-control" id="A1_Score" name="A1_Score" placeholder="Often notice noice when others not">
+                            </div>
+
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4">
+                                <label for="A2_Score">A2_Score</label>
+                            </div>
+                            <div class="col-lg-8 col-md-8">
+                                <input type="text" class="form-control" id="A2_Score" name="A2_Score" placeholder="give attention to the picture rather than small details">
+                            </div>
+
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4">
+                                <label for="A3_Score">A3_Score</label>
+                            </div>
+                            <div class="col-lg-8 col-md-8">
+                                <input type="text" class="form-control" id="A3_Score" name="A3_Score" placeholder="Able to perform more than one task at once">
+                            </div>
+
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4">
+                                <label for="A4_Score">A4_Score</label>
+                            </div>
+                            <div class="col-lg-8 col-md-8">
+                                <input type="text" class="form-control" id="A4_Score" name="A4_Score" placeholder="Can switch between the activities easily">
+                            </div>
+
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4">
+                                <label for="A5_Score">A5_Score</label>
+                            </div>
+                            <div class="col-lg-8 col-md-8">
+                                <input type="text" class="form-control" id="A5_Score" name="A5_Score" placeholder="Can concentrate on study while talking with someone">
+                            </div>
+
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4">
+                                <label for="A6_Score">A6_Score</label>
+                            </div>
+                            <div class="col-lg-8 col-md-8">
+                                <input type="text" class="form-control" id="A6_Score" name="A6_Score" placeholder="If someone board with me then I am able to tell them">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4">
+                                <label for="A7_Score">A7_Score</label>
+                            </div>
+                            <div class="col-lg-8 col-md-8">
+                                <input type="text" class="form-control" id="A7_Score" name="A7_Score" placeholder="Difficult to make out characters while reading the book">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4">
+                                <label for="A8_Score">A8_Score</label>
+                            </div>
+                            <div class="col-lg-8 col-md-8">
+                                <input type="text" class="form-control" id="A8_Score" name="A8_Score" placeholder="Collect the information about the things">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4">
+                                <label for="A8_Score">A9_Score</label>
+                            </div>
+                            <div class="col-lg-8 col-md-8">
+                                <input type="text" class="form-control" id="A9_Score" name="A9_Score" placeholder="By look at someone face can easily make out what he is thinking">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4">
+                                <label for="A8_Score">A10_Score</label>
+                            </div>
+                            <div class="col-lg-8 col-md-8">
+                                <input type="text" class="form-control" id="A10_Score" name="A10_Score" placeholder="Difficult to trust people">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4">
+                                <label for="ethnicity">ethnicity</label>
+                            </div>
+                            <div class="col-lg-8 col-md-8">
+                                <select class="form-control" id="ethnicity" name="ethnicity">
+                                    <option value="1">Hispanic</option>
+                                    <option value="2">Black</option>
+                                    <option value="3">White-European</option>
+                                    <option value="4">Middle</option>
+                                </select>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4">
+                                <label for="jaundice">jaundice</label>
+                            </div>
+                            <div class="col-lg-8 col-md-8">
+                                <select class="form-control" id="jaundice" name="jaundice">
+                                    <option value="0">No</option>
+                                    <option value="1">Yes</option>
+                                </select>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4">
+                                <label for="austim">austim</label>
+                            </div>
+                            <div class="col-lg-8 col-md-8">
+                                <select class="form-control" id="austim" name="austim">
+                                    <option value="0">No</option>
+                                    <option value="1">Yes</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4">
+                                <label for="country_of_res">Country of resident</label>
+                            </div>
+                            <div class="col-lg-8 col-md-8">
+                                <select class="form-control" id="country_of_res" name="country_of_res">
+                                    <option value="0">Autraia</option>
+                                    <option value="1">AmericanSamoa</option>
+                                    <option value="2">White-European</option>
+                                    <option value="3">Albania</option>
+                                    <option value="4">Belgium</option>
+                                    <option value="5">Afghanistan</option>
+                                    <option value="6">Middle Eastern </option>
+                                    <option value="7">Bahrain</option>
+                                    <option value="8">India</option>
+                                </select>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4">
+                                <label for="used_app_before">Used App Before</label>
+                            </div>
+                            <div class="col-lg-8 col-md-8">
+                                <select class="form-control" id="used_app_before" name="used_app_before">
+                                    <option value="0">No</option>
+                                    <option value="1">Yes</option>
+                                </select>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4">
+                                <label for="result">Result</label>
+                            </div>
+                            <div class="col-lg-8 col-md-8">
+                                <select class="form-control" id="result" name="result">
+                                    <option value="0">No</option>
+                                    <option value="1">Yes</option>
+                                </select>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4">
+                                <label for="age_desc">age_desc</label>
+                            </div>
+                            <div class="col-lg-8 col-md-8">
+                                <select class="form-control" id="age_desc" name="age_desc">
+                                    <option value="0">12-16 years</option>
+                                    <option value="1">18 and more</option>
+                                </select>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4">
+                                <label for="relation">relation</label>
+                            </div>
+                            <div class="col-lg-8 col-md-8">
+                                <select class="form-control" id="relation" name="relation">
+                                    <option value="0">Self</option>
+                                    <option value="1">Parent</option>
+                                </select>
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                        <center>
+                            <button type="submit" class="btn btn-dark" value="submit">Submit</button>
+                        </center>
+                        <!--div class="callout">
+  <div class="callout-header"></div>
+  <span class="closebtn" onclick="this.parentElement.style.display='none';">×</span>
+  <div-- class="callout-container">
+<p><a href="/chatbot">chatbot</a> </p>
+  </div>
+</div-->
+                </form>
+            </div>
+        </div>
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+</body>
+<style>
+body {
+    background-color: #626269;
+}
+
+.col-lg-4 {
+    color: #ffffff;
+}
+</style>
+
+</html>

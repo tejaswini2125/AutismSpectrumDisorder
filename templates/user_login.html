@@ -1,0 +1,68 @@
+{% extends "layout.html" %}
+{% block content %}
+
+  <center>{% with messages = get_flashed_messages() %}
+   {% if messages %}
+     <ul class="flashes">
+        {% for message in messages %}
+         <div class="message_flash">{{ message }}</div>
+        {% endfor %}
+    </ul>
+  {% endif %}
+ {% endwith %}</center>
+
+  <form action="/user_login" method="post">
+
+
+    <div class="jumbotron.hero-nature">
+      <label for="email"><b>Email ID </b></label>
+      <input type="text"     placeholder="Enter Email   " name="email" >
+        <br>
+        <br>
+      <label for="psw.."><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="psw" >
+        <br>
+        <br>
+      <button type="submit">Login</button>
+<br>
+        <label><b>New user</b></label>
+            <a href="/user_register" class ='btn2' type="submit">register</a>
+
+
+    </div>
+
+  </form>
+
+
+{% endblock content %}
+
+
+</body>
+</html>
+<style>
+        div.jumbotron.hero-nature {
+            color: white;
+            text-shadow: 1px 3px #000001;
+            text-align: center;
+            background: url('/static/bg.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            padding-top: 100px;
+            padding-bottom: 100px;
+        }
+        </style>
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <style>
+        body {
+            background-color: #626269;
+        }
+
+        .col-lg-4 {
+            color: #ffffff;
+        }
+        </style>

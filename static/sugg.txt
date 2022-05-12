@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% block content %}
+<center><h2>Suggestion Page</h2></center>
+<h1></h1>
+<h3>There are some Stages in Autism.</h3>
+<h1></h1>
+<h3>Stage 1: This is initial stage and this can be treated by providing some therapies to the autistic patients.</h3>
+<h4>         Play Therapy: The goal of play therapy is to build social interaction and communication skills and, in the long run, to enhance ability to engage in novel activities and symbolic play.</h4>
+<h4>         Speech Therapy: There are aspects of speech and communication therapy that guardian can provide with relatively little training.</h4>
+<h4>         Applied Behavior Analysis (ABA): This therapy is possible to do a quick online training and use ABA techniques at home through a program like making them do some basic activities like picking, throwing, etc.</h4>
+<h4>         Floortime: Guardian has to encourage autistic patient to participate in back-and-forth interaction (verbal or non-verbal)—something that can be very challenging for people on the spectrum. </h4>
+<h1></h1>
+<h3>Stage 2: This is the moderate autism disorder where few medications for some years help people suffering from autism to cope up with the disease.</h3>
+<h4>         Risperidone: Helps to improve in the number of tantrums, aggressive episodes, and self-injurious behaviors</h4>
+<h4>         Aripiprazole: Helps in the treatment of irritability.</h4>
+<h4>         Clozapine: Treatment of schizophrenia and for reducing suicidal behavior in patients</h4>
+<h4>         Haloperidol: Helps to treat irritability, anger and uncooperativeness</h4>
+<h1></h1>
+<h3>Stage 3: This is the most severe case of Autism. Patients with this severe Autism may suffer with this for their lifetime with greater difficulty than previous stages. Some of the medications may ease the difficulty, which patients have.</h3>
+<h4>         Sertraline: Helps to improve separation severe anxiety disorder</h4>
+<h4>         Oxytocin: Treatment associated with impaired social interaction and impaired communication, among other symptoms</h4>
+<h4>         Methylphenidate: Treatment for attention-deficit disorders and narcolepsy.</h4>
+<h4>         Venlafaxine: Treatment of major depressive disorder, generalized anxiety disorder, social anxiety disorder, and panic disorder.</h4>
+{% endblock content %}

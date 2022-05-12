@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% block content %}
+  <form action="/user_register" method="post">
+
+    <div class="container">
+         <label for="uname"><b>Username</b></label>
+         <input type="text" placeholder="Enter Name" name="uname" >
+<br>
+         <label for="email"><b>Email Address</b></label>
+         <input type="text" placeholder="Enter Email" name="email" >
+<br>
+         <label for="psw">  <b>Password</b></label>
+         <input type="password" placeholder="Enter Password" name="psw" >
+<br>
+         <label for="gender"><b>Gender</b></label>
+         <input type="text" placeholder="Enter Gender" name="gender" />
+<br>
+         <label for="age"><b>Your AGE</b></label>
+         <input type="text" placeholder="Enter your age" name="age" />
+<br>
+         <button type="submit">Submit</button>
+
+
+    </div>
+
+  </form>
+
+
+{% endblock content %}
